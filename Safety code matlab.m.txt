@@ -1,0 +1,135 @@
+clc;
+clear all;
+close all;
+
+a = arduino('COM4','mega2560','Libraries','Adafruit/MotorShieldV2');
+shield = addon(a,'Adafruit/MotorShieldV2');
+configurePin(a, 'A8', 'AnalogInput');  
+
+dcm1 = dcmotor(shield,1);
+dcm2 = dcmotor(shield,2);
+dcm3 = dcmotor(shield,3);
+dcm4 = dcmotor(shield,4);
+p = 2.7;
+pin1=readVoltage(a,'A8');
+
+interv = 20000;
+init_time = 1;
+y=0;
+while (y<5)    
+x=0;
+while (x<20)
+writeDigitalPin(a,'D50',1);
+writeDigitalPin(a,'D51',0);
+dcm1.Speed = 0.9;
+start(dcm1)
+x=x+1;
+end
+stop(dcm1)
+x=0;
+while (x<17)
+writeDigitalPin(a,'D52',1);
+writeDigitalPin(a,'D53',0);
+dcm2.Speed = 0.9;
+start(dcm2)
+x=x+1;
+end
+stop(dcm2)
+x=0;
+while (x<5)
+writeDigitalPin(a,'D50',1);
+writeDigitalPin(a,'D52',0);
+dcm3.Speed = 0.9;
+start(dcm3)
+x=x+1;
+end
+stop(dcm3)
+x=0;
+writeDigitalPin(a,'D50',0);
+while (x<10)
+writeDigitalPin(a,'D44',1);
+writeDigitalPin(a,'D46',0);
+dcm4.Speed = -0.9;
+start(dcm4)
+x=x+1;
+end
+stop(dcm4)
+x=0;
+writeDigitalPin(a,'D44',0);
+while (x<9)
+writeDigitalPin(a,'D50',1);
+writeDigitalPin(a,'D52',0);
+dcm3.Speed = -0.9;
+start(dcm3)
+x=x+1;
+end
+stop(dcm3)
+x=0;
+writeDigitalPin(a,'D50',0);
+while (x<21)
+writeDigitalPin(a,'D52',1);
+writeDigitalPin(a,'D53',0);
+dcm2.Speed = -0.9;
+start(dcm2)
+x=x+1;
+end
+stop(dcm2)
+x=0;
+while (x<18)
+writeDigitalPin(a,'D50',1);
+writeDigitalPin(a,'D51',0);
+dcm1.Speed = -0.9;
+start(dcm1)
+x=x+1;
+end
+stop(dcm1)
+x=0;
+while (x<17)
+writeDigitalPin(a,'D52',1);
+writeDigitalPin(a,'D53',0);
+dcm2.Speed = 0.9;
+start(dcm2)
+x=x+1;
+end
+stop(dcm2)
+x=0;
+while (x<5)
+writeDigitalPin(a,'D50',1);
+writeDigitalPin(a,'D52',0);
+dcm3.Speed = 0.9;
+start(dcm3)
+x=x+1;
+end
+stop(dcm3)
+x=0;
+while (x<10)
+writeDigitalPin(a,'D44',1);
+writeDigitalPin(a,'D46',0);
+dcm4.Speed = 0.9;
+start(dcm4)
+x=x+1;
+end
+stop(dcm4)
+%x=0;
+%writeDigitalPin(a,'D44',0);
+%while (x<7)
+%writeDigitalPin(a,'D50',1);
+%writeDigitalPin(a,'D52',0);
+%dcm3.Speed = -0.9;
+%start(dcm3)
+%x=x+1;
+%end
+%stop(dcm3)
+x=0;
+writeDigitalPin(a,'D50',0);
+while (x<24)
+writeDigitalPin(a,'D52',1);
+writeDigitalPin(a,'D53',0);
+dcm2.Speed = -0.9;
+start(dcm2)
+x=x+1;
+end
+stop(dcm2)
+y=y+1;
+end
+
